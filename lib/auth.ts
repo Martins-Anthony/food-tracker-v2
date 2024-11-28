@@ -7,6 +7,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
 } from 'firebase/auth'
 
 export const signInWithGoogle = async () => {
@@ -27,6 +28,20 @@ export const signUpWithEmail = async (email: string, password: string) => {
 // Connexion par email et mot de passe
 export const signInWithEmail = async (email: string, password: string) => {
   return signInWithEmailAndPassword(auth, email, password)
+}
+
+// Fonction pour envoyer un email de réinitialisation de mot de passe
+export const resetPassword = async (email: string) => {
+  try {
+    await sendPasswordResetEmail(auth, email)
+    console.log('Email de réinitialisation envoyé.')
+  } catch (error) {
+    console.error(
+      "Erreur lors de l'envoi de l'email de réinitialisation",
+      error
+    )
+    throw error
+  }
 }
 
 // Fonction de déconnexion
