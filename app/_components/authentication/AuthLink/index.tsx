@@ -28,4 +28,3 @@ const AuthLink = () => {
 }
 
 export default AuthLink
-// className="text-sm/6 font-semibold text-gray-900"
