@@ -1,5 +1,5 @@
 import { Section } from '@/app/_containers/layout/Section'
-import AddProductForm from '../form/AddProductFrom'
+import AddProductForm from '../form/AddProductForm'
 import ProductList from '../ProductList'
 
 const ProductsPage = ({ userId }: { userId: string }) => (

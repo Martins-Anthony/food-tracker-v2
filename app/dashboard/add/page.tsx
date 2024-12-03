@@ -1,6 +1,6 @@
 'use client'
 
-import AddProductForm from '@/app/_components/form/AddProductFrom'
+import AddProductForm from '@/app/_components/form/AddProductForm'
 import RedirectsAfterAuth from '@/app/_components/authentication/RedirectsAfterAuth'
 import DateComponent from '@/app/_components/DateComponent'
 import ProductList from '@/app/_components/ProductList'

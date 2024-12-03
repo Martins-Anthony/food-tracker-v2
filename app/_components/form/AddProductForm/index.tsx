@@ -11,14 +11,20 @@ import {
 import { Button } from '../../Button'
 import ProductFields from '../ProductFields'
 
-const AddProductForm = ({ userId }: { userId: string }) => {
+const AddProductForm = ({
+  userId,
+  onProductAdded,
+}: {
+  userId: string
+  onProductAdded?: () => void
+}) => {
   const [nom, setNom] = useState('')
   const [categorie, setCategorie] = useState('')
   const [number, setNumber] = useState(1)
   const [quantity, setQuantity] = useState(1)
   const [expired, setExpired] = useState(todayDate()) // Utilise une chaîne pour gérer la date au format ISO
   const [daysRemainingText, setDaysRemainingText] = useState('')
-  const [backgroundGradient, setBackgroundGradient] = useState('')
+  // const [backgroundGradient, setBackgroundGradient] = useState('')
 
   const handleDateChange = (value: string) => {
     setExpired(value)
@@ -28,10 +34,10 @@ const AddProductForm = ({ userId }: { userId: string }) => {
       const newGradient = getBackgroundGradient(value)
 
       setDaysRemainingText(getDaysRemainingText(daysRemaining))
-      setBackgroundGradient(newGradient) // Mise à jour de l'état
+      // setBackgroundGradient(newGradient) // Mise à jour de l'état
     } else {
       setDaysRemainingText('')
-      setBackgroundGradient('')
+      // setBackgroundGradient('')
     }
   }
 
@@ -51,7 +57,10 @@ const AddProductForm = ({ userId }: { userId: string }) => {
       setQuantity(1)
       setExpired('')
       setDaysRemainingText('')
-      setBackgroundGradient('')
+      // setBackgroundGradient('')
+      if (onProductAdded) {
+        onProductAdded() // Appeler le callback après l'ajout
+      }
     } catch (error) {
       console.error('Erreur lors de l’ajout du produit :', error)
     }

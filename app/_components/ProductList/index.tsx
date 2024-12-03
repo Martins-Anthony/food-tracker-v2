@@ -12,7 +12,13 @@ import Modal from '../Modal'
 import EditProductForm from '../form/EditProductForm'
 import Fields from '../form/Fields'
 
-const ProductList = ({ userId }: { userId: string }) => {
+const ProductList = ({
+  userId,
+  onProductsUpdated,
+}: {
+  userId: string
+  onProductsUpdated: () => void
+}) => {
   const [products, setProducts] = useState<Product[]>([])
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
   const [searchQuery, setSearchQuery] = useState('')
@@ -27,7 +33,7 @@ const ProductList = ({ userId }: { userId: string }) => {
       setFilteredProducts(userProducts)
     }
     fetchProducts()
-  }, [userId])
+  }, [userId, onProductsUpdated])
 
   useEffect(() => {
     const updatedProducts = products.filter(
@@ -44,23 +50,7 @@ const ProductList = ({ userId }: { userId: string }) => {
     setShowModal(true)
   }
 
-  const handleDelete = (product: Product) => {
-    setSelectedProduct(product)
-    setModalType('delete')
-    setShowModal(true)
-  }
-
   const confirmDelete = async (productId: string) => {
-    /*
-    if (selectedProduct) {
-      await deleteProduct(userId, selectedProduct.id)
-      setProducts((prev) =>
-        prev.filter((product) => product.id !== selectedProduct.id)
-      )
-      setShowModal(false)
-      setSelectedProduct(null)
-    }
-    */
     await deleteProduct(userId, productId)
     setProducts((prev) => prev.filter((product) => product.id !== productId))
     setShowModal(false)
@@ -74,6 +64,7 @@ const ProductList = ({ userId }: { userId: string }) => {
           product.id === selectedProduct.id ? updatedProduct : product
         )
       )
+      onProductsUpdated() // Appeler la méthode de réactualisation
       setShowModal(false)
       setSelectedProduct(null)
     }
