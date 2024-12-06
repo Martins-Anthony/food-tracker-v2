@@ -7,30 +7,12 @@ import {
   updateDoc,
   deleteDoc,
 } from 'firebase/firestore'
-
-// Type des produits
-export interface Product {
-  id: string
-  nom: string
-  categorie: string
-  number: number
-  quantity: number
-  expired: string
-}
+import { Product } from './types/product'
 
 export const addProduct = async (
   userId: string,
   product: Omit<Product, 'id'>
 ) => {
-  /*
-  if (!userId) {
-    throw new Error("L'utilisateur n'est pas authentifié.")
-  }
-
-  if (!product.nom || !product.categorie) {
-    throw new Error('Nom et catégorie sont obligatoires')
-  }
-  */
   const productsRef = collection(db, `users/${userId}/products`)
   await addDoc(productsRef, {
     ...product,

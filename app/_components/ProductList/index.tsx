@@ -5,19 +5,19 @@ import {
   getProducts,
   deleteProduct,
   updateProduct,
-  Product,
 } from '../../../lib/firestore'
 import { getDaysRemaining } from '../../../lib/dateUtils'
 import Modal from '../Modal'
 import EditProductForm from '../form/EditProductForm'
 import Fields from '../form/Fields'
+import { Product } from '@/lib/types/product'
 
 const ProductList = ({
   userId,
   onProductsUpdated,
 }: {
   userId: string
-  onProductsUpdated: () => void
+  onProductsUpdated?: () => void
 }) => {
   const [products, setProducts] = useState<Product[]>([])
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
@@ -64,7 +64,9 @@ const ProductList = ({
           product.id === selectedProduct.id ? updatedProduct : product
         )
       )
-      onProductsUpdated() // Appeler la méthode de réactualisation
+      if (onProductsUpdated) {
+        onProductsUpdated()
+      } // Appeler la méthode de réactualisation
       setShowModal(false)
       setSelectedProduct(null)
     }

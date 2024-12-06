@@ -6,7 +6,8 @@ import RedirectsAfterAuth from '@/app/_components/authentication/RedirectsAfterA
 import ProductList from '@/app/_components/ProductList'
 import { Section } from '@/app/_containers/layout/Section'
 import { useAuth } from '@/lib/useAuth'
-import { getProducts, Product } from '@/lib/firestore'
+import { getProducts } from '@/lib/firestore'
+import { Product } from '@/lib/types/product'
 
 export default function Page() {
   const { user } = useAuth()

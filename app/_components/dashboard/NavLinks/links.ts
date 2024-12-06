@@ -10,4 +10,5 @@ export const links = [
     href: '/dashboard/products',
     icon: ClipboardIcon,
   },
+  { name: 'Recettes', href: '/dashboard/recipeGenerator', icon: ClipboardIcon },
 ]

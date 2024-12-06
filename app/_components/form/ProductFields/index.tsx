@@ -4,9 +4,20 @@ import Fields from '../Fields'
 const optionsSelect = [
   'Choisir une catégorie',
   'Légumes',
+  'Fruits',
   'Viandes',
-  'Epicerie',
+  'Poissons & Fruits de Mer',
   'Produits Laitiers',
+  'Pâtes & Riz',
+  'Épicerie Salée',
+  'Épicerie Sucrée',
+  'Boissons',
+  'Surgelés',
+  'Condiments & Sauces',
+  'Pain & Viennoiseries',
+  'Snacks & Apéritifs',
+  'Plats Préparés',
+  'Soupes',
 ]
 
 interface ProductFieldsProps {
